@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+.container * {
+  border-radius: 10px;
+}
+
 .App {
   text-align: center;
 }
@@ -5,12 +13,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -26,6 +28,112 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: tan;
+}
+
+.body {
+  padding: 3rem;
+  width: 47rem;
+  height: 50rem;
+  max-width: 90%;
+  border-radius: 10px;
+  background-color: #FFFFFF95;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: #282c34; */
+}
+
+.content div {
+  height: 20%;
+  /* border: 5px solid #61dafb; */
+  display: flex;
+  justify-content: space-between;
+  gap: 10px
+}
+
+.display {
+  height: 20%;
+}
+
+input {
+  height: 100%;
+  width: 100%;
+  border: 0px;
+  padding: 0px;
+  outline: none;
+  font-size: 90px;
+  color: #656565;
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* remove input arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.buttons {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #ab906e;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 10px #666;
+  color: white;
+  font-size: 43px;
+}
+
+button:hover {
+  background-color: #d2b48c;
+}
+
+button:active {
+  box-shadow: 0 5px #999;
+  transform: translateY(5px);
+}
+
+span {
+  color: white;
+  font-size: 90px;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 @keyframes App-logo-spin {
