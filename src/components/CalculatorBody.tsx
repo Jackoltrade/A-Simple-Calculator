@@ -1,11 +1,13 @@
 import Display from "./Display"
 import Button from "./Button"
-import { useCalculation } from "../providers/CalculationContext";
+import { useCalculation, useInput } from "../providers/CalculationContext";
 
 export default function CalculatorBody() {
     const calculationSet = useCalculation();
+    const input = useInput();
     
-    console.log(calculationSet);
+    console.log("history:", calculationSet);
+    console.log("input:", input);
     
     return (
         <div className="body">
