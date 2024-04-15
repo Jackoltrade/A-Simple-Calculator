@@ -29,7 +29,7 @@ export function CalculationProvider({ children }: CalculationProviderProps) {
             case "insert": 
                 try {
                     if (operation) {
-                        setCalculation(prevCal => ([...prevCal, operation]));
+                        setCalculation(prevCal => [...prevCal, operation]);
                         return;
                     }
                     throw("Wrong button operation!");

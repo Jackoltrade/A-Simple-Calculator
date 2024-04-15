@@ -69,17 +69,30 @@
   height: 20%;
 }
 
-input {
-  height: 100%;
+.display summary {
+  height: 30%;
+  width: 100%;
+  font-size: 35px;
+  color: #848484;
+  background-color: white;
+  text-align: right;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.display input {
+  height: 70%;
   width: 100%;
   border: 0px;
   padding: 0px;
   outline: none;
-  font-size: 90px;
+  font-size: 65px;
   color: #656565;
   text-align: right;
   padding-left: 10px;
   padding-right: 10px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 /* remove input arrows */

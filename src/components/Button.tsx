@@ -1,57 +1,74 @@
-import { useCalculationUpdate } from "../providers/CalculationContext";
-import { useInput, useInputUpdate } from "../providers/CalculationContext"
+import { useInput, useInputUpdate, useCalculationUpdate } from "../providers/CalculationContext";
 
 interface ButtonProps {
     type?: string;
     text?: string;
+    isEqualPressed: boolean;
+    setResult?: () => void;
+    toggleIsEqualPressed: (value: boolean) => void;
 }
 
 export default function Button(props: ButtonProps) {
     const updateCalculation = useCalculationUpdate();
     const input = useInput();
     const updateInput = useInputUpdate();
-    const resetInput= () => {
-        updateInput && updateInput("");
+    const isEqualPressed = props.isEqualPressed;
+    const setResult = props.setResult;
+    const toggleIsEqualPressed = props.toggleIsEqualPressed;
+
+    // a delay function I copyed from Stack Overflow
+    function timeout(delay: number) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
+    // when the operation buttons (+, -, *, /) clicked, it will...
+    const handleCalculationButtons = async (operation: string) => {
+        if (updateCalculation) {
+            if (isEqualPressed) {
+                updateCalculation("insert", operation);
+                await timeout(500);
+                toggleIsEqualPressed(false);
+                return;
+            }
+            updateCalculation("insert", input);
+            updateCalculation("insert", operation);
+        }
     }
 
     const handleOnClick = () => {
+        // if the button is reset input button, it will...
         if (props.text && props.text.toLowerCase() === "reset input") {
-            resetInput();
+            updateInput && updateInput("");
             return;
         }
         if (updateCalculation) {
+            // if the button is reset result button, it will...
             if (props.text && props.text.toLowerCase() === "reset result") {
-                updateCalculation("reset")
+                updateCalculation("reset");
+                toggleIsEqualPressed(false);
+                setResult && setResult();
                 return;
             }
-            if (isNaN(parseFloat(input ?? "0"))) return;
+            // check if there's an input value in the text box, if not, the button click will be ignored
+            if (!isEqualPressed && isNaN(parseFloat(input ?? "NaN"))) return;
+            // update the calculation history with the input number and the operation (+, -, *, /)
             switch(props.type) {
                 case "plus": 
-                    if (input) {
-                        updateCalculation("insert", input);
-                        updateCalculation("insert", "+");
-                        resetInput();
-                    }
+                    handleCalculationButtons("+");
                     return;
                 case "minus": 
-                    if (input) {
-                        updateCalculation("insert", input);
-                        updateCalculation("insert", "-");
-                        resetInput();
-                    }
+                    handleCalculationButtons("-");
                     return;
                 case "multiplication": 
-                    if (input) {
-                        updateCalculation("insert", input);
-                        updateCalculation("insert", "*");
-                        resetInput();
-                    }
-                        return;
+                    handleCalculationButtons("*");
+                    return;
                 case "division": 
-                    if (input) {
+                    handleCalculationButtons("/");
+                    return;
+                case "equal": 
+                    if (!isEqualPressed) {
                         updateCalculation("insert", input);
-                        updateCalculation("insert", "/");
-                        resetInput();
+                        toggleIsEqualPressed(true);
                     }
                     return;
                 default: return;
