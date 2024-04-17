@@ -16,7 +16,11 @@ This is a simple calculator I build for fun, and for studying React & TypeScript
     ```
 3. Type this into the terminal, then press enter (make sure your computer has [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com/) installed):
     ```
+    npm install
+    ```
+4. Finally, run the project:
+    ```
     npm run start
     ```
-4. Open your browser and type in [http://localhost:3000](http://localhost:3000)
-5. Boom, you can use the calculator now
+5. Open your browser and type in [http://localhost:3000](http://localhost:3000)
+6. Boom, you can use the calculator now
