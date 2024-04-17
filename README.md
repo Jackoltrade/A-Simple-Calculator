@@ -14,7 +14,7 @@ This is a simple calculator I build for fun, and for studying React & TypeScript
     ```
     cd ./A-Simple-Calculator/
     ```
-3. Type this into the terminal, then press enter:
+3. Type this into the terminal, then press enter (make sure your computer has [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com/) installed):
     ```
     npm run start
     ```
